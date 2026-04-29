@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: Apache-2.0
+# 2026 - Modified by MetaX Integrated Circuits (Shanghai) Co., Ltd. All Rights Reserved.
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vllm-omni-metax"
+version = "0.18.0"
+description = "MetaX adapter plugin for vllm-omni built on top of vllm-metax"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Metax Team"}
+]
+dependencies = [
+  "vllm-omni==0.18.0",
+  "vllm_metax>=0.18.0",
+]
+
+[project.entry-points."vllm_omni.platform_plugins"]
+metax = "vllm_omni_metax.plugin:metax_omni_platform_plugin"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
