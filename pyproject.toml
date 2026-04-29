@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vllm-omni-metax"
-version = "0.18.0"
+version = "0.19.0"
 description = "MetaX adapter plugin for vllm-omni built on top of vllm-metax"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -14,7 +14,7 @@ authors = [
   { name = "Metax Team"}
 ]
 dependencies = [
-  "vllm-omni==0.18.0",
+  "vllm-omni==0.19.0rc1",
   "vllm_metax>=0.18.0",
 ]
 
