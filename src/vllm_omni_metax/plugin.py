@@ -52,7 +52,18 @@ def _detect_metax_with_mxsml() -> bool:
     except Exception:
         logger.debug("MetaX plugin probe failed.", exc_info=True)
         return False
+    
+def _apply_metax_patches() -> None:
+    if _env_flag("VLLM_OMNI_METAX_DISABLE_PATCHES"):
+        logger.info("vllm-omni-metax patches disabled by VLLM_OMNI_METAX_DISABLE_PATCHES.")
+        return
+    
+    try:
+        from vllm_omni_metax.patches import apply_rope_patch
 
+        apply_rope_patch()
+    except Exception:
+        logger.warning("Failed to apply vllm-omni-metax patches.", exc_info=True)
 
 def metax_omni_platform_plugin() -> Optional[str]:
     """Entry point for `vllm_omni.platform_plugins`.
@@ -69,10 +80,12 @@ def metax_omni_platform_plugin() -> Optional[str]:
 
     if _env_flag("VLLM_OMNI_METAX_FORCE"):
         logger.warning("vllm-omni-metax forced on by VLLM_OMNI_METAX_FORCE.")
+        _apply_metax_patches()
         return "vllm_omni_metax.platform.MetaxOmniPlatform"
 
     if _detect_metax_with_mxsml():
         logger.info("Activating vllm-omni-metax platform plugin.")
+        _apply_metax_patches()
         return "vllm_omni_metax.platform.MetaxOmniPlatform"
 
     return None
