@@ -9,7 +9,6 @@ It only registers a `vllm_omni.platform_plugins` entry point so that
 """
 
 from .plugin import metax_omni_platform_plugin
-from .platform import MetaxOmniPlatform
 
-__all__ = ["metax_omni_platform_plugin", "MetaxOmniPlatform"]
+__all__ = ["metax_omni_platform_plugin"]
 

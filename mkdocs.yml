@@ -1,0 +1,87 @@
+site_name: vllm-omni-metax
+site_url: !ENV READTHEDOCS_CANONICAL_URL
+repo_url: https://github.com/MetaX-MACA/vllm-omni-metax
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  logo: assets/logos/index-hero.png
+  favicon: assets/logos/index-hero.png
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      toggle:
+        icon: material/brightness-2
+        name: Switch to system preference
+  features:
+    - content.action.edit
+    - content.code.copy
+    - content.tabs.link
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.share
+    - toc.follow
+
+plugins:
+  - search
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_css:
+  - mkdocs/stylesheets/extra.css
+
+extra_javascript:
+  - mkdocs/javascript/mathjax.js
+  - https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting_started/installation.md
+      - Quickstart: getting_started/quickstart.md
+  - User Guide:
+      - Overview: user_guide/overview.md
+  - Developer Guide:
+      - Architecture: developer_guide/architecture.md
+  - Experiments:
+      - Reconstruction: experiments/reconstruction.md
+
+use_directory_urls: false
